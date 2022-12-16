@@ -12,19 +12,17 @@ Ganha ao final aquele que fizer mais pontos até o final do turno de 30 segundos
 
 ### Inicializar
 Obs: Não precisa iniciar na venv presente no código, apenas tendo os pré requisitos e rodando cada código irá funcionar, seja windows ou linux.
-```
-HOST_IP = socket.gethostbyname(socket.gethostname())
-HOST_PORT = 12345
-```
+
 
 1. Iniciar/Rode o código server.py e espere a confirmação que inicializou o server e está "escutando"
 2. Iniciar/Rode o código client.py o número de players permitidos (por padrão está 2, mas pode aumentar até 4 alterando a linha 12 do server.py)
 3. Todas os players/janelas precisa pressionar o Enter para que possa iniciar o jogo
 
 OBS: não precisa se preocupar com o HOST IP ou alterar isso no client, pois pega automático por causa da linha:
-`HOST_IP = socket.gethostbyname(socket.gethostname())` que está tando no server quanto no client.  
-O PORT é 12345
-
+```
+HOST_IP = socket.gethostbyname(socket.gethostname())
+HOST_PORT = 12345
+```
 
 ## Funcionamento e Protocolo
 ### Server
@@ -129,5 +127,6 @@ CLIENT2 --------------------------------- Informa que se Conectou --------------
 CLIENT 1 E 2 <--------- Envia Json com as informações dos dois players e espera alteração -------- Server   
 O server irá aguardar os 2 players mudarem seus Status `is_waiting` para **False** e `is_ready` para **True**  
 Assim que o server receber os Jsons com os estados acima, irá alterar nos dois o atributo `is_playing` para **True**  
+  
 E realizará o envio frequente das informações dos estados do Jogo até acabar o Tempo do Round.
 
